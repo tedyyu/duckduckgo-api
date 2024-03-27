@@ -14,6 +14,7 @@ def run():
         keywords = request.args.get('q')
         # 从请求参数中获取最大结果数，如果未指定，则默认为10
         max_results = int(request.args.get('max_results', 10))
+    print(f'keywords: {keywords}, max_results: {max_results}')
     return keywords, max_results
 
 
@@ -53,7 +54,7 @@ async def search_images():
     results = []
     with DDGS() as ddgs:
         # 使用DuckDuckGo搜索关键词
-        ddgs_gen = ddgs.images(keywords, safesearch='Off', timelimit=None)
+        ddgs_gen = ddgs.images(keywords, safesearch='Off', timelimit=None, size='Large', region='us-en')
         # 从搜索结果中获取最大结果数
         for r in islice(ddgs_gen, max_results):
             results.append(r)
