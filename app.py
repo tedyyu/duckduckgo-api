@@ -24,7 +24,7 @@ async def search():
     results = []
     with DDGS() as ddgs:
         # 使用DuckDuckGo搜索关键词
-        ddgs_gen = ddgs.text(keywords, safesearch='Off', timelimit='y', backend="lite")
+        ddgs_gen = ddgs.text(keywords, safesearch='on', timelimit='y', backend="lite")
         # 从搜索结果中获取最大结果数
         for r in islice(ddgs_gen, max_results):
             results.append(r)
@@ -54,7 +54,7 @@ async def search_images():
     results = []
     with DDGS() as ddgs:
         # 使用DuckDuckGo搜索关键词
-        ddgs_gen = ddgs.images(keywords, safesearch='Off', timelimit=None, size='Large', region='us-en')
+        ddgs_gen = ddgs.images(keywords, safesearch='on', timelimit=None, size='Large', region='us-en')
         # 从搜索结果中获取最大结果数
         for r in islice(ddgs_gen, max_results):
             results.append(r)
@@ -69,7 +69,7 @@ async def search_videos():
     results = []
     with DDGS() as ddgs:
         # 使用DuckDuckGo搜索关键词
-        ddgs_gen = ddgs.videos(keywords, safesearch='Off', timelimit=None, resolution="high")
+        ddgs_gen = ddgs.videos(keywords, safesearch='on', timelimit=None, resolution="high")
         # 从搜索结果中获取最大结果数
         for r in islice(ddgs_gen, max_results):
             results.append(r)
